@@ -1,0 +1,133 @@
+
+.search-block{
+    max-width: 1000px;
+    margin: 0 auto;
+}
+.main-title{
+    text-align: center;
+    font-size: 30px;
+    font-weight: 700;
+}
+.movie-container{
+    display: grid;
+    grid-template-columns: repeat(3, 250px);
+    grid-column-gap: 30px;
+    grid-row-gap: 30px;
+    justify-content: center;
+    justify-items: center;
+    margin-top: 40px;
+}
+.movie{
+    border: 1px #E2E2E2 solid;
+    border-radius: 5px;
+    padding: 1px;
+    transition: all .3s;
+}
+.movie:hover{
+    border: 1px solid #8b8989;
+    border-radius: 5px;
+    box-sizing: border-box;
+    box-shadow: 10px 10px 10px rgba(56, 55, 55, 0.25);   
+}
+.img{
+    width: 250px;
+    height: 141px;
+}
+.title{
+    font-size: 30px;
+    font-weight: 600;
+    text-align: center;
+    max-width: 100px;
+    margin: 0 auto;
+    overflow-x: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.orig_title{
+    font-size: 16px;
+    font-weight: 600;
+    text-align: center;
+    max-width: 75px;
+    margin: 0 auto;
+    overflow-x: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.overview{
+    font-size: 24px;
+    text-align: center;
+    margin: 0 auto;
+    max-height: 200px;
+    overflow-y: hidden;
+    display: inline-block;
+    text-overflow: ellipsis;
+}
+.bottom_text{
+    display: flex;
+    justify-content: space-between;
+}
+.movie{
+    position: relative;
+    max-width: 260px;
+}
+
+.loader {
+    margin: 20px 0px;
+    border: 16px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 16px solid #3498db;
+    width: 100px;
+    height: 100px;
+    -webkit-animation: spin 2s linear infinite; /* Safari */
+    animation: spin 2s linear infinite;
+    margin-left: 65px;
+  }
+  
+  /* Safari */
+  @-webkit-keyframes spin {
+    0% { -webkit-transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(360deg); }
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+.no-display{
+    display: none;
+}
+
+.select{
+    max-width: 335px;
+    position: absolute;
+    background-color: #8b8989;
+    border: 1px solid #8b8989;
+    border-radius: 5px;
+    box-sizing: border-box;
+    box-shadow: 10px 10px 10px rgba(56, 55, 55, 0.25);   
+
+}
+/* 125 */
+.select > .img{
+    width: 330px;
+    height: auto;
+}
+.grey-bg{
+    position: fixed;
+    width: 100%;
+    min-height: 100%;
+
+    background-color: #8b8989;
+    opacity: 0.5;
+    display: none;
+    transition: all 5s;
+}
+
+.op_1{
+    opacity: 0;
+}
+.stop-scrolling {
+    height: 100%;
+    overflow: hidden;
+}
