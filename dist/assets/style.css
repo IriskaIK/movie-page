@@ -131,3 +131,38 @@
     height: 100%;
     overflow: hidden;
 }
+
+.sort_inner{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+}
+.nav_item{
+    cursor: pointer;
+    font-weight: 400;
+    margin-right: 40px;
+    text-align: center;
+    transition: font-weight .1s ease-in-out;
+}
+.nav_item:last-child{
+    margin-right: 0;
+}
+.max_sort{
+    width: 114px;
+
+}
+.min_sort{
+    width: 134px;
+}
+.date_old_sort{
+    width: 52px;
+
+}
+.date_new_sort{
+    width: 40px;
+}
+
+.nav_item:hover{
+    font-weight: 700;
+}

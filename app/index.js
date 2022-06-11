@@ -1,70 +1,69 @@
-import getMovies from './movie/getMovies'
+import {getMovies} from './movie/getMovies'
 import MovieCard from './movie/movieClassCard'
-import {disableScroll, enableScroll} from './disableScroll'
+import {CreateMovieList} from './movie/MovieList'
+import { renderCards } from './movie/renderCards'
+import {selectCard, unselectCard} from './movie/selectCard'
+import {sortByMaxRating, sortByMinRating} from './sortMovie'
 
-  
 document.addEventListener('DOMContentLoaded', ()=>{
     const search = document.querySelector('.search-input ')
     const movie_inner = document.querySelector('.movie-container')
     const grey_bg = document.querySelector('.grey-bg')
+    const sort_bar = document.querySelector('.sort_inner')
     
     search.addEventListener('input', (e)=>{
         const text = e.target.value
         movie_inner.innerHTML = ''
         if(text){
-            fetch(getMovies(text))
-                .then(r =>r.json())
+            getMovies(text, CreateMovieList, MovieCard)
+            .then(r=>{
+                renderCards(r, movie_inner)
+            })
+
+        }
+    })
+
+
+    sort_bar.addEventListener('click', (e)=>{
+        if (e.target.classList.contains('nav_item')){
+            if (e.target.classList.contains('max_sort')){
+                movie_inner.innerHTML = ''
+                getMovies(document.querySelector('.search-input').value, CreateMovieList, MovieCard)
                 .then(r=>{
-                    r.results.forEach(element => {
-                        let card =  new MovieCard(element)
-                        card.renderCard(movie_inner)
-                    });
+                    debugger
+                    r = sortByMaxRating(r)
+                    
+                    return r
+                })
+                .then(r=>{
+                    renderCards(r, movie_inner)
+                })
+
+
+            }
+            else if (e.target.classList.contains('min_sort')){
+                movie_inner.innerHTML = ''
+                getMovies(document.querySelector('.search-input').value, CreateMovieList, MovieCard)
+                .then(r=>{
+                    debugger
+                    r = sortByMinRating(r)
+                    
+                    return r
+                })
+                .then(r=>{
+                    renderCards(r, movie_inner)
                 })
             }
-    })
-    movie_inner.addEventListener('click', (e)=>{
-        if(document.querySelector('.select')){
+            else if (e.target.classList.contains('date_old_sort')){
 
-        }
-        else{
-            if(e.target.className=='movie' || e.target.parentElement.className=='movie'){
-                disableScroll()
+            }
+            else if (e.target.classList.contains('date_new_sort')){
 
-                let select_card
-                console.log('click')
-                movie_inner.style.marginRight = `17px`
-                if(e.target.parentElement.className=='movie'){
-                    select_card = e.target.parentElement.cloneNode(true);
-                    e.target.parentElement.classList.add('op_1')
-                }
-                else{
-                    
-                    select_card = e.target.cloneNode(true);
-                    e.target.classList.add('op_1')
-                }
-                
-                select_card.style.top = `${window.scrollY + 130}px`
-                select_card.classList.add('select')
-                movie_inner.append(select_card)
-                if (grey_bg.style.display != 'block'){
-                    grey_bg.style.display = 'block'
-                    grey_bg.style.zIndex = '1'
-                }
-                
-                select_card.style.zIndex = '1'
             }
         }
-        
     })
-    grey_bg.addEventListener('click', (e)=>{
-        console.log('grey')
-        movie_inner.style.marginRight = '0px'
-        enableScroll()
-        grey_bg.style.display = 'none'
-        let op_card = document.querySelector('.op_1')
-        op_card.classList.remove('op_1')
-        document.querySelector('.select').remove()
+    selectCard(movie_inner, grey_bg)
+    unselectCard(movie_inner, grey_bg)
 
-    })
 
 })

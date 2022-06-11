@@ -2,6 +2,7 @@ export default class MovieCard{
         constructor(data){
             this.html = document.createElement('div')
             this.html.className = 'movie'
+            this.average = data.vote_average
             this.img= new Image()
             this.img.classList.add('img', 'loader')
             this.img.addEventListener('load', ()=>{
@@ -26,13 +27,15 @@ export default class MovieCard{
                 <div class="average">${data.vote_average}</div>
             </div>`
             
-            
 
 
 
         }
-        renderCard(query){
-             query.append(this.html)
-            
+        getHtml(){
+            return this.html
         }
+        getVote_average(){
+            return this.average
+        }
+
 }
