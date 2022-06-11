@@ -4,6 +4,7 @@ export default class MovieCard{
             this.html.className = 'movie'
             this.average = data.vote_average
             this.img= new Image()
+            this.date= data.release_date
             this.img.classList.add('img', 'loader')
             this.img.addEventListener('load', ()=>{
                 
@@ -36,6 +37,9 @@ export default class MovieCard{
         }
         getVote_average(){
             return this.average
+        }
+        getDate(){
+            return this.date
         }
 
 }

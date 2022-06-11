@@ -3,7 +3,7 @@ import MovieCard from './movie/movieClassCard'
 import {CreateMovieList} from './movie/MovieList'
 import { renderCards } from './movie/renderCards'
 import {selectCard, unselectCard} from './movie/selectCard'
-import {sortByMaxRating, sortByMinRating} from './sortMovie'
+import {sortByMaxRating, sortByMinRating, sortByNew, sortByOld} from './sortMovie'
 
 document.addEventListener('DOMContentLoaded', ()=>{
     const search = document.querySelector('.search-input ')
@@ -30,7 +30,6 @@ document.addEventListener('DOMContentLoaded', ()=>{
                 movie_inner.innerHTML = ''
                 getMovies(document.querySelector('.search-input').value, CreateMovieList, MovieCard)
                 .then(r=>{
-                    debugger
                     r = sortByMaxRating(r)
                     
                     return r
@@ -45,7 +44,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
                 movie_inner.innerHTML = ''
                 getMovies(document.querySelector('.search-input').value, CreateMovieList, MovieCard)
                 .then(r=>{
-                    debugger
+                    
                     r = sortByMinRating(r)
                     
                     return r
@@ -55,10 +54,28 @@ document.addEventListener('DOMContentLoaded', ()=>{
                 })
             }
             else if (e.target.classList.contains('date_old_sort')){
-
+                movie_inner.innerHTML = ''
+                getMovies(document.querySelector('.search-input').value, CreateMovieList, MovieCard)
+                .then(r=>{
+                    r = sortByOld(r)
+                    
+                    return r
+                })
+                .then(r=>{
+                    renderCards(r, movie_inner)
+                })
             }
             else if (e.target.classList.contains('date_new_sort')){
-
+                movie_inner.innerHTML = ''
+                getMovies(document.querySelector('.search-input').value, CreateMovieList, MovieCard)
+                .then(r=>{
+                    r = sortByNew(r)
+                    
+                    return r
+                })
+                .then(r=>{
+                    renderCards(r, movie_inner)
+                })
             }
         }
     })

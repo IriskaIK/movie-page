@@ -31,11 +31,40 @@ function sortByMinRating(data){
         }
     })
     return data
-
-    
-
 }
 
+function sortByOld(data){
+    data.sort((a,b)=>{
+        if(new Date(a.getDate())> new Date(b.getDate())){
+            return 1
+        }
+        else if(new Date(a.getDate()) < new Date(b.getDate())){
+            return -1
+        }
+        else{
+            return 0
+        }
+    })
+    return data
+}
+
+function sortByNew(data){
+    data.sort((a,b)=>{
+        if(new Date(a.getDate())< new Date(b.getDate())){
+            return 1
+        }
+        else if(new Date(a.getDate()) > new Date(b.getDate())){
+            return -1
+        }
+        else{
+            return 0
+        }
+    })
+    return data
+}
+
+
+
 export{
-    sortByMaxRating, sortByMinRating
+    sortByMaxRating, sortByMinRating, sortByNew, sortByOld
 }
